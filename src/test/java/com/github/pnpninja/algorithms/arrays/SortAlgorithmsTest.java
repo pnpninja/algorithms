@@ -2,16 +2,14 @@ package com.github.pnpninja.algorithms.arrays;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.Random;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class SortAlgorithmsTest {
 	
 	int[] array = new int[10000];
 	
-	@Before
 	public void initArray() {
 		Random random = new Random();
 		for (int i = 0; i < 10000; i++)
@@ -24,26 +22,41 @@ public class SortAlgorithmsTest {
 	@Test
 	public void testInsertionSort() {
 		initArray();
-		SortAlgorithms.insertionSort(array);
-		assertTrue(isArrayInOrder(array));
+		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
+		Arrays.sort(sortedByDefault);
+		SortAlgorithms.insertionSort(array);		
+		assertTrue(Arrays.equals(array, sortedByDefault));
 		
 	}
 	
 	@Test
 	public void testSelectionSort() {
 		initArray();
-		SortAlgorithms.selectionSort(array);
-		assertTrue(isArrayInOrder(array));
+		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
+		Arrays.sort(sortedByDefault);
+		SortAlgorithms.selectionSort(array);		
+		assertTrue(Arrays.equals(array, sortedByDefault));
 		
 	}
 	
-	boolean isArrayInOrder(int[] array) {
-		for(int index = 1;index<array.length;index++) {
-			if(array[index]<array[index-1]) {
-				return false;
-			}
-		}
-		return true;
+	@Test
+	public void testBubbleSort() {
+		initArray();
+		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
+		Arrays.sort(sortedByDefault);
+		SortAlgorithms.bubbleSort(array);		
+		assertTrue(Arrays.equals(array, sortedByDefault));
+		
 	}
+	
+	@Test
+	public void testMergeSort() {
+		initArray();
+		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
+		Arrays.sort(sortedByDefault);
+		SortAlgorithms.mergeSort(array);		
+		assertTrue(Arrays.equals(array, sortedByDefault));
+	}
+	
 
 }

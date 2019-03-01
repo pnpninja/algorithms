@@ -1,10 +1,12 @@
-package com.github.pnpninja.algorithms.arrays;
+package com.github.pnpninja.algorithms;
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Random;
 import org.junit.Test;
+
+import com.github.pnpninja.algorithms.SortAlgorithms;
 
 public class SortAlgorithmsTest {
 	
@@ -55,6 +57,15 @@ public class SortAlgorithmsTest {
 		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
 		Arrays.sort(sortedByDefault);
 		SortAlgorithms.mergeSort(array);		
+		assertTrue(Arrays.equals(array, sortedByDefault));
+	}
+	
+	@Test
+	public void testHeapSort() {
+		initArray();
+		int[] sortedByDefault = Arrays.copyOfRange(array, 0, array.length);
+		Arrays.sort(sortedByDefault);
+		SortAlgorithms.heapSort(array);		
 		assertTrue(Arrays.equals(array, sortedByDefault));
 	}
 	

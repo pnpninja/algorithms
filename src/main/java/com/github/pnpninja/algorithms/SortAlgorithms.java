@@ -1,4 +1,4 @@
-package com.github.pnpninja.algorithms.arrays;
+package com.github.pnpninja.algorithms;
 /**
  * Class that implements all sorting algorithms
  * @author Prateek Narendra
@@ -117,6 +117,40 @@ public class SortAlgorithms {
 			}
 		}
 		return mergedSortedArray;		
+	}
+	
+	/**
+	 * Sorts array using Heap Sort
+	 * @param array Array to sort
+	 */
+	public static void heapSort(int[] array) {
+		for(int index = (array.length/2);index>=0;index--) {
+			heapify(array,array.length,index);
+		}
+		for(int index = array.length-1;index>=1;index--) {
+			array[0] = array[0] + array[index] - (array[index] = array[0]);
+			heapify(array,index,0);
+		}
+	}
+	
+	private static void heapify(int[] array,int size,int rootIndex) {
+		
+		int largestIndex = rootIndex;
+		int leftIndex = 2*rootIndex + 1;
+		int rightIndex = 2*rootIndex + 2;
+		
+		if(leftIndex < size && array[leftIndex] > array[largestIndex]) {
+			largestIndex = leftIndex;
+		}
+		
+		if(rightIndex < size && array[rightIndex] > array[largestIndex]) {
+			largestIndex = rightIndex;
+		}
+		
+		if(largestIndex!=rootIndex) {
+			array[largestIndex] = array[largestIndex] + array[rootIndex] - (array[rootIndex] = array[largestIndex]);
+			heapify(array,size,largestIndex);
+		}
 	}
 	
 	

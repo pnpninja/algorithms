@@ -1,5 +1,10 @@
 package com.github.pnpninja.algorithms;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 public class DynamicProgrammingAlgorithms {
 	/**
 	 * Returns the minimum edit distance of two string
@@ -24,4 +29,56 @@ public class DynamicProgrammingAlgorithms {
 								//Insert Operation
 								minimumEditDistanceInternal(s1,s2,s1Index,s2Index-1)));
 	}
+	
+	/**
+	 * Returns the median of 2 arrays
+	 * @param l1 1st Array
+	 * @param l2 2nd Array
+	 * @return Median of 2 sorted arrays
+	 */
+	
+	public static double medianOfTwoArrays(List<Integer> l1, List<Integer> l2) {
+		
+		int[] array1 = ArrayUtils.toPrimitive(l1.toArray(new Integer[l1.size()]));
+		int[] array2 = ArrayUtils.toPrimitive(l2.toArray(new Integer[l2.size()]));
+		Arrays.sort(array1);
+		Arrays.sort(array2);
+		if(array1.length>array2.length) {
+			return medianOfTwoSortedArrays(array2, array1);
+		}
+		return medianOfTwoSortedArrays(array1, array2);
+
+	}
+	
+	private static double medianOfTwoSortedArrays(int[] array1,int[] array2) {
+		 int lowArray1 = 0;
+		 int highArray1 = array1.length;
+		 int pa2 = 0;
+		 while(lowArray1<=highArray1) {
+			 int partitionArray1 = (lowArray1 + highArray1)/2;
+			 int partitionArray2 = ((array1.length+array2.length+1)/2) - partitionArray1;
+			 pa2 = partitionArray2;
+			 int minArray1 = partitionArray1==0? Integer.MIN_VALUE : array1[partitionArray1-1];
+			 int maxArray1 = partitionArray1==array1.length?Integer.MAX_VALUE : array1[partitionArray1];
+			 
+			 int minArray2 = partitionArray2==0? Integer.MIN_VALUE : array2[partitionArray2-1];
+			 int maxArray2 = partitionArray2==array2.length?Integer.MAX_VALUE : array2[partitionArray2];
+			 
+			 if(minArray1<=maxArray2 && minArray2<=maxArray1) { //Termination condition
+				 if((array1.length+array2.length)%2==0) {				
+					 return ArithmeticUtils.avg(
+							 ArithmeticUtils.max(minArray1, minArray2),
+							 ArithmeticUtils.min(maxArray1, maxArray2));
+				 }else {
+					 return (double)ArithmeticUtils.max(minArray1, minArray2);
+				 }
+			 }else if(minArray1>maxArray2) {
+				 highArray1 = partitionArray1 - 1;
+			 }else {
+				 lowArray1 = partitionArray1 + 1;
+			 }
+		 }
+		 throw new IllegalArgumentException();
+	}
+	
 }

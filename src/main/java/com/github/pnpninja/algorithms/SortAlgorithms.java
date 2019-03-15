@@ -136,7 +136,7 @@ public class SortAlgorithms {
 	private static void heapify(int[] array,int size,int rootIndex) {
 		
 		int largestIndex = rootIndex;
-		int leftIndex = 2*rootIndex + 1;
+		int leftIndex  = 2*rootIndex + 1;
 		int rightIndex = 2*rootIndex + 2;
 		
 		if(leftIndex < size && array[leftIndex] > array[largestIndex]) {

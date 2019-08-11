@@ -31,6 +31,7 @@ public class SortAlgorithmsTest {
 		
 	}
 	
+	
 	@Test
 	public void testSelectionSort() {
 		initArray();

@@ -53,11 +53,9 @@ public class DynamicProgrammingAlgorithms {
 	private static double medianOfTwoSortedArrays(int[] array1,int[] array2) {
 		 int lowArray1 = 0;
 		 int highArray1 = array1.length;
-		 int pa2 = 0;
 		 while(lowArray1<=highArray1) {
 			 int partitionArray1 = (lowArray1 + highArray1)/2;
 			 int partitionArray2 = ((array1.length+array2.length+1)/2) - partitionArray1;
-			 pa2 = partitionArray2;
 			 int minArray1 = partitionArray1==0? Integer.MIN_VALUE : array1[partitionArray1-1];
 			 int maxArray1 = partitionArray1==array1.length?Integer.MAX_VALUE : array1[partitionArray1];
 			 
